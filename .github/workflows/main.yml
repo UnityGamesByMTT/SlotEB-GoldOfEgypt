@@ -78,5 +78,5 @@ jobs:
           git config advice.addIgnoredFile false
           git status
           git commit -m "Build"
-          git push
+          git push origin HEAD:main
 
