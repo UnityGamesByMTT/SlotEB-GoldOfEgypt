@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <!--s11-->
+    &&& title2019start &&&<title>%UNITY_WEB_NAME%</title>&&& title2019end &&&
+    &&& title2020start &&&<title>{{{ PRODUCT_NAME }}}</title>&&& title2020end &&&
+    &&& UnityLoader1 &&& <script src="%UNITY_WEBGL_LOADER_URL%"></script> &&& UnityLoader2 &&&
+    <!--s12-->
+
+    <link href="style1.css" rel="stylesheet" type="text/css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/dynamics.js@1.1.5"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+
+    <script src="awtConfigurations.js"></script>
+    <script src="autoSizeText.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.7.1/svg.min.js"></script>
+
+</head>
+
+<body style="background-color: #232323; text-align: center;">
+
+    <div class="awtGameCanvas" style="width: 100%; height: 100%;">
+        <div id="gameContainer">
+            <canvas id="unity-canvas" style="width: 100%; height: 100%;"></canvas>
+        </div>
+    </div>
+
+    <div class="awtBackground" style="width: 100%; height: 100%;">
+        <div id="pb" class="vertical-centered-box">
+            <canvas class="pg-canvas" style="display: block;" width="606" height="606"></canvas>
+            <canvas class="pg-canvas" width="1505" height="1178" style="display: block;"></canvas>
+        </div>
+        <div id="pf" class="vertical-centered-box">
+            <canvas class="pg-canvas" style="display: block;" width="606" height="606"></canvas>
+            <canvas class="pg-canvas" width="1505" height="1178" style="display: block;"></canvas>
+        </div>
+    </div>
+
+    <div id="loader">
+        <div class="awtCanvas1" style="transform: scale(calc(0.13*var(--agwww)));">
+            <img src="gameLogo.png" class="gameLogo" style="display: &&& showGameLogo &&&;">
+            <div class="progressBar" style="display: &&& showProgressBar &&&;">
+                <div class="full"></div>
+            </div>
+            <p class="progressText" style="display: &&& showProgressText &&&;"> LOADING...</p>
+            <div id="startToLoadButtonDiv">
+                <button id="startToLoadButton" onclick="startToLoad();">
+                    &&& startToLoadButtonText &&&
+                </button>
+            </div>
+            <button style="display: &&& showWatchVideoButton &&&;" id="watchVideoButton" onclick="
+                document.querySelector('.hideButton').style.opacity='100%';
+                document.querySelector('.hideButton').style.pointerEvents = 'all';
+                document.querySelector('#videoIFrame').style.height='260px';
+                var iframe = document.createElement('iframe');
+                iframe.style.border = 'none';
+                iframe.style.position = 'absolute';
+                iframe.style.left = '0';
+                iframe.src = 'https://www.youtube.com/embed/&&& watchVideoButtonYoutubeLink &&&?autoplay=1&amp;mute=1';
+                iframe.width = '100%';
+                iframe.height = '100%';
+                var parentEl = document.querySelector('#videoIFrame');
+                parentEl.insertBefore(iframe, parentEl.children[0]);
+                ">
+                <img style="position: relative;width: 100%;" src="playButton.png">
+                <div
+                    style="color: #20283b;top: 12px;position: absolute;left: 75px;font-size: 26px;width: 40%;height: 64%;line-height:  normal !important;text-align: left;font-family: 'Play', sans-serif;display: flex;justify-content: left;align-items: center;text-decoration-style: inherit;">
+                    <div id="text1" style="font-size: 11px;">
+                        &&& watchVideoButtonText &&&
+                    </div>
+                </div>
+            </button>
+            <div id="videoIFrame"
+                style="background: black none repeat scroll 0% 0%; width: 400px; height: 0; left: 313px; position: fixed; transition: all 1s linear 0s; z-index: 999999999; top: 253px;">
+                <div class="hideButton">
+                    <button class="cta" onclick="
+                        document.querySelector('.hideButton').style.opacity='0%';
+                        document.querySelector('.hideButton').style.pointerEvents='none';
+                        document.querySelector('#videoIFrame').style.height='0px';
+                        ">
+                        <span>HIDE</span>
+                        <span>
+                            <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <path class="one"
+                                        d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z"
+                                        fill="#FFFFFF"></path>
+                                    <path class="two"
+                                        d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z"
+                                        fill="#FFFFFF"></path>
+                                    <path class="three"
+                                        d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z"
+                                        fill="#FFFFFF"></path>
+                                </g>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <button style="display: &&& showPlayPongButton &&&;" id="playPongButton" onclick="
+                document.querySelector('.hideButton2').style.opacity = '100%';
+                document.querySelector('.hideButton2').style.pointerEvents = 'all';
+                document.querySelector('#gamePongCanvas').style.height='260px';
+                document.querySelector('#gamePongIframe').style.height='200px';
+                document.querySelector('#gamePongIframe').style.borderColor='turquoise';
+                document.querySelector('#gamePongIframe').style.borderStyle='groove';
+                document.querySelector('#gamePongIframe').style.borderWidth='4px 4px 4px 4px';
+                ">
+                <img style="position: relative;width: 100%;" src="playButton.png">
+                <div
+                    style="color: #20283b;top: 12px;position: absolute;left: 75px;font-size: 26px;width: 40%;height: 64%;line-height:  normal !important;text-align: left;font-family: 'Play', sans-serif;
+                    display: flex;
+                    justify-content: left;align-items: center;text-decoration-style: inherit;">
+                    <div id="text2" style="font-size: 11px;">
+                        &&& playPongButtonText &&&
+                    </div>
+                </div>
+            </button>
+            <div style="left: 313px; position: fixed; z-index: 999999999; top: 253px; height: 0px;width: 400px; transition: 1s;" id="gamePongCanvas">
+                <iframe id="gamePongIframe" src="gamepong.html" style="background: #232a3e; transition: all 1s ease 0s; position: absolute; left: 0px; height: 0px; border: none;" width="400" height="200">
+                </iframe>
+                <div class="hideButton2">
+                    <button class="cta" onclick="
+                        document.querySelector('.hideButton2').style.opacity = '0%';
+                        document.querySelector('.hideButton2').style.pointerEvents = 'none';
+                        document.querySelector('#gamePongCanvas').style.height = '0px';
+                        document.querySelector('#gamePongIframe').style.height='0px';
+                        document.querySelector('#gamePongIframe').style.border='none';
+                        ">
+                        <span>HIDE</span>
+                        <span>
+                            <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <path class="one"
+                                        d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z"
+                                        fill="#FFFFFF"></path>
+                                    <path class="two"
+                                        d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z"
+                                        fill="#FFFFFF"></path>
+                                    <path class="three"
+                                        d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z"
+                                        fill="#FFFFFF"></path>
+                                </g>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="description" style="height: 200px; width: 800px; margin-top: 0px; margin-bottom: 0px; background-color: rgba(0, 23, 20, 0.11); transform: scale(.65), translate(-50%,-50%); justify-content: center; align-items: center; display: &&& showDescription &&&; margin-right: auto; margin-left: auto; position: fixed; bottom: 50px; top: auto; left: 5px; right: 5px; transform: scale(.5) translate(0%, 50%); pointer-events: all;">
+                <p style="color: rgb(190, 246, 255);letter-spacing: 1px;position: relative;font-family: Consolas, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, Monaco, &quot;Courier New&quot;, monospace;text-align: center;font-size: 29px;font-weight: 700;margin-top: auto;margin-bottom: auto;margin-right: auto;margin-left: auto;font-style: normal;text-shadow: 2px 2px 2px rgb(0, 90, 169);line-height: initial;" class="descriptionText">
+                    &&& descriptionText &&&
+                </p>
+            </div>
+        </div>
+        <div class="awtCanvas2" style="width: 100%; height: 100%;">
+            <div id="socialLinks_portraitMode"
+                style="display: flex; position: absolute; top: 0px; width: 100%; place-content: center; pointer-events: all;">
+                <a href="&&& facebookButtonLink &&&" target="_blank" class="facebook hvr-buzz-out"
+                    style="display: &&& showFacebookButton &&&;width: calc(var(--agw)*6.60);height: calc(var(--agw)*6.60);">
+                    <i class="fa fa-facebook"
+                        style="font-style: normal;font-variant-caps: normal;font-weight: normal;font-size: 14px;line-height: 1;font-family: FontAwesome;font-variant-alternates: normal;font-variant-east-asian: normal;font-variant-ligatures: normal;font-variant-numeric: normal;font-variant-position: normal;font-size: inherit;"></i>
+                </a>
+                <a href="&&& twitterButtonLink &&&" target="_blank" class="twitter hvr-buzz-out"
+                    style="display: &&& showTwitterButton &&&;width: calc(var(--agw)*6.60);height: calc(var(--agw)*6.60);">
+                    <i class="fa fa-twitter"
+                        style="font-style: normal;font-variant-caps: normal;font-weight: normal;font-size: 14px;line-height: 1;font-family: FontAwesome;font-variant-alternates: normal;font-variant-east-asian: normal;font-variant-ligatures: normal;font-variant-numeric: normal;font-variant-position: normal;font-size: inherit;"></i>
+                </a>
+                <a href="&&& googleButtonLink &&&" target="_blank" class="google hvr-buzz-out"
+                    style="display: &&& showGoogleButton &&&;width: calc(var(--agw)*6.60);height: calc(var(--agw)*6.60);">
+                    <i class="fa fa-google"
+                        style="font-style: normal;font-variant-caps: normal;font-weight: normal;font-size: 14px;line-height: 1;font-family: FontAwesome;font-variant-alternates: normal;font-variant-east-asian: normal;font-variant-ligatures: normal;font-variant-numeric: normal;font-variant-position: normal;font-size: inherit;"></i>
+                </a>
+                <a href="&&& linkedinButtonLink &&&" target="_blank" class="linkedin hvr-buzz-out"
+                    style="display: &&& showLinkedinButton &&&;width: calc(var(--agw)*6.60);height: calc(var(--agw)*6.60);">
+                    <i class="fa fa-linkedin"
+                        style="font-style: normal;font-variant-caps: normal;font-weight: normal;font-size: 14px;line-height: 1;font-family: FontAwesome;font-variant-alternates: normal;font-variant-east-asian: normal;font-variant-ligatures: normal;font-variant-numeric: normal;font-variant-position: normal;font-size: inherit;"></i>
+                </a>
+                <a href="&&& youtubeButtonLink &&&" target="_blank" class="youtube hvr-buzz-out"
+                    style="display: &&& showYoutubeButton &&&;width: calc(var(--agw)*6.60);height: calc(var(--agw)*6.60);">
+                    <i class="fa fa-youtube"
+                        style="font-style: normal;font-variant-caps: normal;font-weight: normal;font-size: 14px;line-height: 1;font-family: FontAwesome;font-variant-alternates: normal;font-variant-east-asian: normal;font-variant-ligatures: normal;font-variant-numeric: normal;font-variant-position: normal;font-size: inherit;"></i>
+                </a>
+            </div>
+            <div id="storeLinks_portraitMode" class="storeLinks"
+                style="width: 100%; place-content: space-between space-evenly; align-items: center; display: flex; margin-right: auto; margin-left: auto; position: absolute; bottom: calc(10*var(--agw)); pointer-events: all; flex-wrap: wrap; direction: rtl;">
+                <a class="hvr-buzz-out" href="&&& playStoreButtonLink &&&" target="_blank" 
+                    style="display: &&& showPlayStoreButton &&&;width: calc(21*var(--agw));">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" style="width: 100%;">
+                </a>
+                <a class="hvr-buzz-out" href="&&& appStoreButtonLink &&&" target="_blank" 
+                    style="display: &&& showAppStoreButton &&&;width: calc(21*var(--agw));">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" style="width: 100%;">
+                </a>
+                <a class="hvr-buzz-out" href="&&& microsoftStoreButtonLink &&&" target="_blank" 
+                    style="display: &&& showMicrosoftStoreButton &&&;width: calc(21*var(--agw));">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg" style="width: 100%;">
+                </a>
+            </div>
+            <div id="socialLinks_landscapeMode" style="pointer-events: all; display: none;">
+                <a href="&&& facebookButtonLink &&&" target="_blank" class="facebook hvr-buzz-out"
+                    style="display: &&& showFacebookButton &&&;">
+                    <i class="fa fa-facebook"
+                        style="font-style: normal;font-variant-caps: normal;font-weight: normal;font-size: 14px;line-height: 1;font-family: FontAwesome;font-variant-alternates: normal;font-variant-east-asian: normal;font-variant-ligatures: normal;font-variant-numeric: normal;font-variant-position: normal;font-size: inherit;"></i>
+                </a>
+                <a href="&&& twitterButtonLink &&&" target="_blank" class="twitter hvr-buzz-out"
+                    style="display: &&& showTwitterButton &&&;">
+                    <i class="fa fa-twitter"
+                        style="font-style: normal;font-variant-caps: normal;font-weight: normal;font-size: 14px;line-height: 1;font-family: FontAwesome;font-variant-alternates: normal;font-variant-east-asian: normal;font-variant-ligatures: normal;font-variant-numeric: normal;font-variant-position: normal;font-size: inherit;"></i>
+                </a>
+                <a href="&&& googleButtonLink &&&" target="_blank" class="google hvr-buzz-out" style="display: &&& showGoogleButton &&&;">
+                    <i class="fa fa-google"
+                        style="font-style: normal;font-variant-caps: normal;font-weight: normal;font-size: 14px;line-height: 1;font-family: FontAwesome;font-variant-alternates: normal;font-variant-east-asian: normal;font-variant-ligatures: normal;font-variant-numeric: normal;font-variant-position: normal;font-size: inherit;"></i>
+                </a>
+                <a href="&&& linkedinButtonLink &&&" target="_blank" class="linkedin hvr-buzz-out"
+                    style="display: &&& showLinkedinButton &&&;">
+                    <i class="fa fa-linkedin"
+                        style="font-style: normal;font-variant-caps: normal;font-weight: normal;font-size: 14px;line-height: 1;font-family: FontAwesome;font-variant-alternates: normal;font-variant-east-asian: normal;font-variant-ligatures: normal;font-variant-numeric: normal;font-variant-position: normal;font-size: inherit;"></i>
+                </a>
+                <a href="&&& youtubeButtonLink &&&" target="_blank" class="youtube hvr-buzz-out"
+                    style="display: &&& showYoutubeButton &&&;">
+                    <i class="fa fa-youtube"
+                        style="font-style: normal;font-variant-caps: normal;font-weight: normal;font-size: 14px;line-height: 1;font-family: FontAwesome;font-variant-alternates: normal;font-variant-east-asian: normal;font-variant-ligatures: normal;font-variant-numeric: normal;font-variant-position: normal;font-size: inherit;"></i>
+                </a>
+            </div>
+            <div id="storeLinks_landscapeMode" class="storeLinks"
+                style="width: calc(20*var(--agw));align-items: center;display: flex;position: absolute;transform: translate(0%, -50%);flex-wrap: wrap;align-content: space-evenly;direction: rtl;pointer-events: all;top: 45%;bottom: 50px;right: 1vw;left: auto;height: calc(17*var(--agw));">
+                <a class="hvr-buzz-out" href="&&& playStoreButtonLink &&&" target="_blank" 
+                    style="display: &&& showPlayStoreButton &&&;width: 85%;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" style="width: 100%;">
+                </a>
+                <a class="hvr-buzz-out" href="&&& appStoreButtonLink &&&" target="_blank" 
+                    style="display: &&& showAppStoreButton &&&;width: 85%;">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" style="width: 100%;">
+                </a>
+                <a class="hvr-buzz-out" href="&&& microsoftStoreButtonLink &&&" target="_blank" 
+                    style="display: &&& showMicrosoftStoreButton &&&;width: 85%;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg" style="width: 100%;">
+                </a>
+            </div>
+            <div id="footer"
+                style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; bottom: 0px;position: absolute;margin: auto; width: 100%;pointer-events: all;">
+                <div class="footerItem" style="display: &&& showPrivacyPolicy &&&; margin: calc(var(--agw)*1);">
+                    <a id="privacy" class="hvr-grow footerItemText_portraitMode" href="&&& privacyPolicyLink &&&" target="_blank">
+                        Privacy Policy
+                    </a>
+                </div>
+                <div class="footerItem" style="display: &&& showTermsOfService &&&; margin: calc(var(--agw)*1);">
+                    <a id="terms" class="hvr-grow footerItemText_portraitMode" href="&&& termsOfServiceLink &&&" target="_blank">
+                        Terms of Service
+                    </a>
+                </div>
+                <div class="footerItem" style="display: &&& showCopyright &&&; margin: calc(var(--agw)*1);">
+                    <a id="copyright" class="hvr-grow footerItemText_portraitMode" href="&&& copyrightLink &&&" target="_blank">
+                        &&& copyrightText &&&
+                    </a>
+                </div>
+            </div>
+            <a id="companyLogo" href="&&& companyLogoLink &&&" target="_blank" class="hvr-buzz-out companyLogo_portraitMode"
+                style="pointer-events: all; display: &&& showCompanyLogo &&&;">
+                <img class="companyLogoImage" src="companyLogo.png">
+            </a>
+            <button title="Enter fullscreen" id="fullscreenButton" onclick="toggle_fullscreen()"
+                style="width: calc(var(--agw)*8); height: calc(var(--agw)*8); position: absolute; bottom: 0px; right: 0px; margin: 1.5vw; font-size: 16px; display: &&& showFullscreenButton &&&; transition: opacity 0.4s ease 0s; background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%; padding: 0px; border: 0px none; cursor: pointer; appearance: button; text-rendering: auto; letter-spacing: normal; word-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none; text-align: center; align-items: flex-start; box-sizing: border-box; pointer-events: all;">
+                <img src="fullScreenButton.svg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
+            </button>
+        </div>
+    </div>
+
+    <div style="background: rgb(0, 0, 0) none repeat scroll 0% 0%; opacity: 0.85; width: 100%; height: 100%; position: fixed; z-index: 2147483647; top: 0px; display: none;" id="WebGLMobileInputSystemUI">  <form style="position: absolute;top: 30%;display: flex;width: 100%;justify-content: center;z-index: 2147483647;opacity: 1;" id="form1">      <input type="text" id="inputField" style="display: block;font-size: 175%;" placeholder="enter here" size="35">    <input type="submit" value="DONE" style="display: block;margin-left: 0.4%;font-size: 175%;" id="doneButton"><input value="CANCEL" id="cancelButton" type="button" style="margin-left: 0.4%;display: block;font-size: 175%;" onclick="cancel();"></form></div>
+
+    &&& Script1Start &&&
+    <script>
+        var unityInstantiated = false;
+        var applicationInstance;
+        var counter1 = 0;
+
+        function instantiateApplication() 
+        {
+            //s21//
+            applicationInstance = UnityLoader.instantiate("gameContainer", "%UNITY_WEBGL_BUILD_URL%", {onProgress: UnityProgress});
+            //s22//
+        }
+
+        function startToLoad() {
+
+            document.querySelector("#startToLoadButtonDiv").style.display = "none";
+            document.querySelector(".progressText").style.display = showProgress;
+
+            counter1++;
+            if (counter1 == 1)
+            {
+                instantiateApplication();
+            }
+        }
+
+        function UnityProgress(applicationInstance, progress) {
+          if (!applicationInstance.Module) {
+            return;
+          }
+          const loader = document.querySelector("#loader");
+          if (!applicationInstance.progress) {
+            const progress = document.querySelector("#loader .progressBar");
+            progress.style.display = "block";
+            applicationInstance.progress = progress.querySelector(".full");
+          }
+          
+          document.getElementsByClassName("full")[0].style.transform = "scaleX(" + ((progress/9)*10) + ")";
+          
+          if (progress === 1) {
+
+            unityInstantiated = true;
+
+            loader.querySelector(".progressBar").style.display = "none";
+            loader.querySelector(".progressText").style.display = "none";
+            loader.querySelector(".gameLogo").style.display = "none";
+            loader.querySelector(".awtCanvas1").style.backgroundColor = "transparent";
+            loader.querySelector(".awtCanvas1").style.pointerEvents = "none";
+            document.querySelector("#socialLinks_landscapeMode").style.display = "none";
+            document.querySelector(".description").style.display = "none";
+            document.getElementsByClassName("storeLinks")[0].style.display = "none";
+            document.getElementsByClassName("storeLinks")[1].style.display = "none";
+
+            document.querySelector("#footer").style.display = "none";
+
+            document.querySelector("#socialLinks_portraitMode").style.display = "none";
+            document.querySelector("#companyLogo").style.display = "none";
+
+            document.getElementsByClassName("awtBackground")[0].style.display = "none";
+            document.querySelector(".awtBackground").style.pointerEvents = "none";
+
+            document.querySelector(".awtCanvas2").style.pointerEvents = "none";
+
+            document.querySelector("#watchVideoButton").style.display = "none";
+            document.querySelector("#playPongButton").style.display = "none";
+
+          }
+          else if (progress >= 0.9) {
+              loader.querySelector(".progressText").innerHTML = "LOADING...";
+          }
+          else {
+              loader.querySelector(".progressText").innerHTML = Math.round(((progress/9)*10) * 100) + "%";
+          }
+        }
+    </script>
+    &&& Script1End &&&
+
+    &&& Script2Start &&&
+    <script>
+
+    var applicationInstance;
+    var unityInstantiated = false;
+
+    var counter1 = 0;
+
+    function instantiateApplication() 
+    {
+        document.body.appendChild(script);
+    }
+
+    function startToLoad() {
+
+        document.querySelector("#startToLoadButtonDiv").style.display = "none";
+        document.querySelector(".progressText").style.display = showProgress;
+
+        counter1++;
+        if (counter1 == 1)
+        {
+            instantiateApplication();
+        }
+    }
+
+//s31//
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
+    var config = {
+        dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
+        frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
+        codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
+    #if MEMORY_FILENAME
+        memoryUrl: buildUrl + "/{{{ MEMORY_FILENAME }}}",
+    #endif
+    #if SYMBOLS_FILENAME
+        symbolsUrl: buildUrl + "/{{{ SYMBOLS_FILENAME }}}",
+    #endif
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "{{{ COMPANY_NAME }}}",
+        productName: "{{{ PRODUCT_NAME }}}",
+        productVersion: "{{{ PRODUCT_VERSION }}}",
+    };
+//s32//
+
+        var container = document.querySelector("#gameContainer");
+        var canvas = document.querySelector("#unity-canvas");
+        var loader = document.querySelector("#loader");
+
+        var script = document.createElement("script");
+
+        script.src = loaderUrl;
+            script.onload = () => {
+                createUnityInstance(canvas, config, (progress) => {
+                    if (progress === 1) {
+
+                    }
+                    else if (progress >= 0.9) {
+                        loader.querySelector(".progressText").innerHTML = "LOADING...";
+                    }
+                    else {
+                        loader.querySelector(".progressText").innerHTML = Math.round(progress * 100) + "%";
+                    }
+
+                    loader.querySelector(".full").style.transform = "scaleX(" + progress + ")";
+                }).then((unityInstance) => {
+
+                    applicationInstance = unityInstance;
+                    unityInstantiated = true;
+
+                    loader.querySelector(".progressBar").style.display = "none";
+                    loader.querySelector(".progressText").style.display = "none";
+                    loader.querySelector(".gameLogo").style.display = "none";
+                    loader.querySelector(".awtCanvas1").style.backgroundColor = "transparent";
+                    loader.querySelector(".awtCanvas1").style.pointerEvents = "none";
+                    document.querySelector("#socialLinks_landscapeMode").style.display = "none";
+                    document.querySelector(".description").style.display = "none";
+                    document.getElementsByClassName("storeLinks")[0].style.display = "none";
+                    document.getElementsByClassName("storeLinks")[1].style.display = "none";
+
+                    document.querySelector("#footer").style.display = "none";
+
+                    document.querySelector("#socialLinks_portraitMode").style.display = "none";
+                    document.querySelector("#companyLogo").style.display = "none";
+
+                    document.getElementsByClassName("awtBackground")[0].style.display = "none";
+                    document.querySelector(".awtBackground").style.pointerEvents = "none";
+
+                    document.querySelector(".awtCanvas2").style.pointerEvents = "none";
+
+                    document.querySelector("#watchVideoButton").style.display = "none";
+                    document.querySelector("#playPongButton").style.display = "none";
+
+                }).catch((message) => {
+                    alert(message);
+                });
+            };
+
+    </script>
+    &&& Script2End &&&
+
+    <script src="awt.js"></script>
+
+	
+	<script type="text/javascript" src="StreamingAssets/imprintjs-master/dist/imprint.min.js"></script>
+	<script type="text/javascript">
+
+    var deviceFingerPrint="1234";
+	var agent = "1234";
+    var deviceTests = 
+    [
+        "audio",
+        "colorDepth",
+        "cpuClass",
+        "deviceDpi",
+        "processorCores",
+        "publicIp",
+        "screenResolution",
+        "timezoneOffset"
+    ];
+    window.CustomFunction = function()
+	{
+		console.log('call CustomFunction');
+		agent = navigator.userAgent;
+		typeof (imprint) != "undefined" && imprint.test(deviceTests).then(function (myresult) {
+			deviceFingerPrint = myresult;
+			console.log('myresult',myresult);
+			applicationInstance.SendMessage('StartGameManager', 'GetWebGLImprintValue', deviceFingerPrint);
+			
+		});
+		applicationInstance.SendMessage('StartGameManager', 'GetWebGLUserAgentValue', agent);
+	};
+ </script>
+ <script>
+	const successCallback =(position)=>{
+	console.log('GetWebGLLocationSuccess_'+position);
+	 latt = position.coords.latitude;
+     longi = position.coords.longitude;
+	applicationInstance.SendMessage('SocketIOManager', 'GetWebGLLocationLattValue', latt);
+	applicationInstance.SendMessage('SocketIOManager', 'GetWebGLLocationLongiValue', longi);
+	};
+
+	const errorCallback =(error)=>{
+	console.error('GetWebGLLocationError_'+error);
+	applicationInstance.SendMessage('SocketIOManager', 'GetWebGLLocationError', 'Error_'+error);
+	switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    console.log("The application doesn't have the permission to make use of location services");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                     console.log("The location of the device is uncertain");
+                    break;
+                case error.TIMEOUT:
+                    console.log("The request to get user location timed out");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    console.log("Time to fetch location information exceeded the maximum timeout interval");
+                    break;
+            }
+	};
+	
+	window.GetLocation = function()
+	{
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(successCallback,errorCallback,{
+				enableHighAccuracy:true,
+				timeout:5000
+			});
+		}
+		else{
+			applicationInstance.SendMessage('SocketIOManager', 'GetWebGLLocationError', 'Error_: geolocation error');
+		}
+		const id = navigator.geolocation.watchPosition(successCallback, errorCallback);
+	}
+</script>
+ <script type="text/javascript">
+					var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || 
+					{widgetcode:"bc386ded2a412b77fc37a1fbe32e28bef2e45226fc2689ae3441fee767f6c832427d5c1c7ae89ec53c2346bb651ae231", values:{},ready:function(){}};
+					var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;
+					s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);d.write("<div id='zsiqwidget'></div>");
+                    $zoho.salesiq.ready=function()
+					{
+						$zoho.salesiq.floatbutton.coin.hidetooltip();
+						$zoho.salesiq.chatbutton.visible("hide");
+						$zoho.salesiq.floatbutton.visible("hide"); 
+					}
+				     window.CallZohoChat = function()
+				    {
+					    $zoho.salesiq.floatwindow.visible("show");
+				    }
+				</script>
+				
+				
+<script type="text/javascript">
+if ('serviceWorker' in navigator) {
+  //console.log('Entered1');
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/clevertap_sw.js');
+  });
+}
+
+     var clevertap = {event:[], profile:[], account:[], onUserLogin:[],region:'in1', notifications:[], privacy:[]};
+ // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+clevertap.account.push({"id": "WWW-WR9-555Z"});
+clevertap.privacy.push({optOut: false}); //set the flag to true, if the user of the device opts out of sharing their data
+clevertap.privacy.push({useIP: false}); //set the flag to true, if the user agrees to share their IP data
+ (function () {
+         var wzrk = document.createElement('script');
+         wzrk.type = 'text/javascript';
+         wzrk.async = true;
+         wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/clevertap.min.js';
+         var s = document.getElementsByTagName('script')[0];
+         s.parentNode.insertBefore(wzrk, s);
+  })();
+</script>
+<script type="text/javascript">
+    //For Safari
+function requestPermission() {
+    if ('safari' in window && 'pushNotification' in window.safari) {
+
+        var permissionData =
+            window.safari.pushNotification.permission('web.com.passiongaming.rummypassion');
+        window.safari.pushNotification.requestPermission(
+            'https://backoffice.rummypassion.in/push',
+            'web.com.passiongaming.rummypassion', {deviceToken:"rummypassionpassiongaming"}, function(subscription) {
+                console.log(subscription);
+                if(subscription.permission === 'granted') {
+                    subscriptionInfoSafari = subscription;
+                    safariToken = subscription.deviceToken;
+                    sending(safariToken);
+                    // updateSubscriptionOnServer(subscription);
+                }
+                else if(subscription.permission === 'denied') {
+                    console.dir(arguments);  
+                }
+            });
+
+    } else {
+        alert("Push notifications not supported.");
+    }
+}
+
+window.onload = function(){
+   clevertap.notifications.push({
+  
+    "apnsWebPushId": 'web.com.passiongaming.rummypassion',
+    "apnsWebPushServiceUrl": 'https://backoffice.rummypassion.in/push', 
+    "titleText":"We'd like to show you notifications for latest updates.",
+    "bodyText":'You can unsubscribe from notifications anytime.',
+    "okButtonText":'Allow',
+    "rejectButtonText":'Later',
+    "okButtonColor":'#008000',
+    "askAgainTimeInSeconds":86400,
+    "hidePoweredByCT":true,
+    "serviceWorkerPath": "/clevertap_sw.js" // path to your custom service worker file
+  });
+
+  
+};
+
+</script>
+
+<script type="text/javascript">
+
+   // load Branch
+         (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking qrCode".split(" "), 0);
+         // init Branch
+		 branch.init('key_test_niSZjbkVQKG6C9YvC4G4xfnaEyoQBprK', function(err, data) {
+			console.log(err, data);
+		});
+		window.CompleteRegistration = function(_userID)
+		{
+			
+			var event_and_custom_data = {
+			   "user_id": _userID
+			};
+			var content_items = [
+			{	   
+			   "$user_id": _userID
+			}];
+
+			var customer_event_alias = "webalias";
+
+			branch.logEvent(
+			   "COMPLETE_REGISTRATION",
+			   event_and_custom_data,
+			   content_items,
+			   customer_event_alias,
+			   function(err) { console.log(err); }
+			);
+		}
+		window.Login = function(_userID,_loginMode)
+		{
+			
+			var event_and_custom_data = {
+			   "user_id": _userID,
+			   "Login_Mode":_loginMode
+			};
+			var content_items = [
+			{	   
+			   "$user_id": _userID
+			}];
+
+			var customer_event_alias = "webalias";
+
+			branch.logEvent(
+			   "LOGIN",
+			   event_and_custom_data,
+			   content_items,
+			   customer_event_alias,
+			   function(err) { console.log(err); }
+			);
+		}
+		
+		window.Purchase = function(_userID,couponId,revenueId,_transactionID)
+		{
+			
+			var event_and_custom_data = {
+			   "user_id": _userID,
+			   "revenue":revenueId,
+			   "coupon":couponId,
+			   "transaction_id": _transactionID
+			};
+			var content_items = [
+			{	   
+			   "$user_id": _userID
+			}];
+
+			var customer_event_alias = "webalias";
+
+			branch.logEvent(
+			   "PURCHASE",
+			   event_and_custom_data,
+			   content_items,
+			   customer_event_alias,
+			   function(err) { console.log(err); }
+			);
+		}
+		window.FTD = function(_userID,couponId,revenueId,_transactionID)
+		{
+			
+			var event_and_custom_data = {
+			   "user_id": _userID,
+			   "revenue":revenueId,
+			   "coupon":couponId,
+			   "transaction_id": _transactionID
+			};
+			var content_items = [
+			{	   
+			   "$user_id": _userID
+			}];
+
+			var customer_event_alias = "webalias";
+
+			branch.logEvent(
+			   "FTD",
+			   event_and_custom_data,
+			   content_items,
+			   customer_event_alias,
+			   function(err) { console.log(err); }
+			);
+		}
+		window.GamePlayCompleted = function(table_name,type_of_finish,user_id,wager_amount,prize_money_won,game_type,game_variation,max_players,game_started_time,game_ended_time,total_players,reference_number,result_rank,entry_amount,_reason)
+		{
+			
+			var event_and_custom_data = {
+			   "user_id": user_id,
+			   "table_name":table_name,
+			   "type_of_finish":type_of_finish,
+			   "wager_amount": wager_amount,
+			   "prize_money_won": prize_money_won,
+			   "game_type": game_type,
+			   "game_variation": game_variation,
+			   "max_players": max_players,
+			   "game_started_time": game_started_time,
+			   "game_ended_time": game_ended_time,
+			   "total_players": total_players,
+			   "reference_number": reference_number,
+				"result_rank": result_rank,
+				"entry_amount": entry_amount,
+				"reason": _reason
+			    
+			};
+			var content_items = [
+			{	   
+			   "$user_id": user_id
+			}];
+
+			var customer_event_alias = "webalias";
+
+			branch.logEvent(
+			   "Cash_Gameplay_Completed",
+			   event_and_custom_data,
+			   content_items,
+			   customer_event_alias,
+			   function(err) { console.log(err); }
+			);
+		}
+		window.TournamentGamePlayCompleted = function(prize_money_won,entry_fee,result_rank,number_of_seats_filled,registration_date,total_players,tournament_name,tournament_start_date,user_id,tournament_type)
+		{
+			
+			var event_and_custom_data = {
+			   "prize_money_won": prize_money_won,
+			   "entry_fee":entry_fee,
+			   "result_rank":result_rank,
+			   "number_of_seats_filled": number_of_seats_filled,
+			   "registration_date": registration_date,
+			   "total_players": total_players,
+			   "tournament_name": tournament_name,
+			   "tournament_start_date": tournament_start_date,
+			   "user_id": user_id,
+			   "tournament_type": tournament_type
+			
+			};
+			var content_items = [
+			{	   
+			   "$user_id": user_id
+			}];
+
+			var customer_event_alias = "webalias";
+
+			branch.logEvent(
+			   "Tournament_Gameplay_Completed",
+			   event_and_custom_data,
+			   content_items,
+			   customer_event_alias,
+			   function(err) { console.log(err); }
+			);
+		}
+
+</script>
+</body>
+
+</html>

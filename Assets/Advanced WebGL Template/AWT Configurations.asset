@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71743494deec8b24489b4592ead08203, type: 3}
+  m_Name: AWT Configurations
+  m_EditorClassIdentifier: 
+  _aspectRatio: 4
+  _forceToRotate: 0
+  _maxAspectRatioWidth: 1
+  _maxAspectRatioHeight: 1
+  _minAspectRatioWidth: 1
+  _minAspectRatioHeight: 1
+  _fixedAspectRatioWidth: 20
+  _fixedAspectRatioHeight: 9
+  _forceToRotateText: Please Rotate Your Device!
+  _antiAdBlocker: 1
+  _antiAdBlockerWarningTitle: Adblock Detected
+  _antiAdBlockerWarningDescription: Your browser is using the Adblock Plugin. To
+    continue website please disable adblock plugin.
+  _startToLoadButton: 0
+  _startToLoadButtonText: RUN GAME
+  _showAppStoreButton: 0
+  _microsoftStoreButtonLink: https://u3d.as/1Xr0
+  _showMicrosoftStoreButton: 0
+  _appStoreButtonLink: https://u3d.as/1Xr0
+  _showPlayStoreButton: 0
+  _playStoreButtonLink: https://u3d.as/1Xr0
+  _showDescription: 0
+  _descriptionText: '[GAME NAME] is a multiplayer, first-person shooter game. The
+    game is in early development but is updated regularly with new content.'
+  _showFacebookButton: 0
+  _facebookButtonLink: https://u3d.as/1Xr0
+  _showTwitterButton: 0
+  _twitterButtonLink: https://u3d.as/1Xr0
+  _showGoogleButton: 0
+  _googleButtonLink: https://u3d.as/1Xr0
+  _showLinkedinButton: 0
+  _linkedinButtonLink: https://u3d.as/1Xr0
+  _showYoutubeButton: 0
+  _youtubeButtonLink: https://u3d.as/1Xr0
+  _showPrivacyPolicy: 0
+  _privacyPolicyLink: https://u3d.as/1Xr0
+  _showTermsOfService: 0
+  _termsOfServiceLink: https://u3d.as/1Xr0
+  _showCopyright: 0
+  _copyrightLink: https://u3d.as/1Xr0
+  _copyrightText: "Copyright \xA9 2020 Agnosia Games"
+  _showGameLogo: 0
+  _gameLogoSize: 50
+  _showCompanyLogo: 0
+  _companyLogoSize: 100
+  _companyLogoLink: https://u3d.as/1Xr0
+  _showProgressBar: 0
+  _showProgressText: 0
+  _showFullscreenButton: 0
+  _showWatchVideoButton: 0
+  _showPlayPongButton: 0
+  _watchVideoButtonText: WATCH TUTORIAL
+  _playPongButtonText: PLAY PONG
+  _watchVideoButtonAutoSize: 0
+  _playPongButtonAutoSize: 0
+  _watchVideoButtonFontSize: 12px
+  _playPongButtonFontSize: 13px
+  _watchVideoButtonYoutubeLink: https://www.youtube.com/watch?v=FIpZ1h7LEos
+  _disableMobileWarning: 1
+  _targetPath: /Users/underpinmacgamedev/Desktop/SlotsWebgl/GoldenChinaTown/Gslots
+  _s11: "\n    &&& title2019start &&&<title>%UNITY_WEB_NAME%</title>&&& title2019end
+    &&&\n    &&& title2020start &&&<title>SlotsUP</title>&&& title2020end &&&\n   
+    &&& UnityLoader1 &&& <script src=\"%UNITY_WEBGL_LOADER_URL%\"></script> &&& UnityLoader2
+    &&&\n    "
+  _s21: "\n            applicationInstance = UnityLoader.instantiate(\"gameContainer\",
+    \"%UNITY_WEBGL_BUILD_URL%\", {onProgress: UnityProgress});\n            "
+  _s31: "\n    var buildUrl = \"Build\";\n    var loaderUrl = buildUrl + \"/Gslots.loader.js\";\n   
+    var config = {\n        dataUrl: buildUrl + \"/Gslots.data\",\n        frameworkUrl:
+    buildUrl + \"/Gslots.framework.js\",\n        codeUrl: buildUrl + \"/Gslots.wasm\",\n       
+    streamingAssetsUrl: \"StreamingAssets\",\n        companyName: \"UnderpinServices\",\n       
+    productName: \"SlotsUP\",\n        productVersion: \"1.0\",\n    };\n"
