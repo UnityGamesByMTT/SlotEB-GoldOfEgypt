@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>pong</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="style1.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.7.1/svg.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-color: #FF000000;">
+
+<div id="pong" style="border: none; font-family: 'Press Start 2P'" width="100%" height="100%"></div>
+
+<script>
+var width=400,height=200,draw=SVG("pong").size(width,height);draw.viewbox(0,0,400,200);var background=draw.rect(width,height).fill("#FF000000"),line=draw.line(width/2,0,width/2,height);line.stroke({width:5,color:"#ffda14",dasharray:"5,5"});var paddleWidth=15,paddleHeight=90,paddleLeft=draw.rect(paddleWidth,paddleHeight);paddleLeft.x(0).cy(height/2).fill("#00ff99");var paddleRight=paddleLeft.clone();paddleRight.x(width-paddleWidth).fill("#ff0066");var ballSize=21,ball=draw.circle(ballSize);ball.center(width/2,height/2).fill("#7f7f7f");var lastTime,animFrame,playerLeft=playerRight=0,scoreLeft=draw.text(playerLeft+"").font({size:16,family:"Press Start 2P, cursive",anchor:"end",fill:"#c4fe64"}).move(width/2-10,10),text3=draw.text("").font({size:32,family:"Press Start 2P, cursive",anchor:"middle",fill:"#c4fe64"}).move(width/2+2,height/2-25),text4=draw.text("CLICK TO START!").font({size:17,family:"Press Start 2P, cursive",anchor:"middle",fill:"#c4fe64"}).move(width/2,height/2+25),scoreRight=scoreLeft.clone().text(playerRight+"").font("anchor","start").x(width/2+10),vx=0,vy=0,difficulty=2.5;function update(e){ball.dmove(vx*e,vy*e);var t=ball.cx(),a=ball.cy(),i=paddleLeft.cy(),e=Math.min(difficulty,Math.abs(a-i));i+=i<a?e:-e,paddleLeft.cy(Math.max(paddleHeight/2,Math.min(height-paddleHeight/2,i))),(vy<0&&a<=0||0<vy&&height<=a)&&(vy=-vy);e=paddleLeft.y(),i=paddleRight.y();vx<0&&t<=paddleWidth&&e<a&&a<e+paddleHeight||0<vx&&width-paddleWidth<=t&&i<a&&a<i+paddleHeight?(vy=7*(a-((vx<0?e:i)+paddleHeight/2)),vx=1.02*-vx):(vx<0&&t<=0||0<vx&&width<=t)&&(vx<0?++playerRight:++playerLeft,reset(),scoreLeft.text(playerLeft+""),scoreRight.text(playerRight+""));t=paddleRight.y();t<=0&&-1==paddleDirection?paddleRight.cy(paddleHeight/2):height-paddleHeight<=t&&1==paddleDirection?paddleRight.y(height-paddleHeight):paddleRight.dy(paddleDirection*paddleSpeed),ball.fill(ballColor.at(1/width*ball.x()))}function callback(e){lastTime&&update((e-lastTime)/1e3),lastTime=e,animFrame=requestAnimationFrame(callback)}callback();var paddleDirection=0,paddleSpeed=5;function reset(){boom(),vy=vx=0,ball.animate(100).center(width/2,height/2),paddleLeft.animate(100).cy(height/2),paddleRight.animate(100).cy(height/2),setTimeout(function(){0===vx&&0===vy&&(vy=.5<Math.random()?(vx=150*Math.random()*-1-200,150*Math.random()*-1-150):(vx=150*Math.random()+200,150*Math.random()+150))},2100),text3.text("3"),setTimeout(function(){text3.text("2")},700),setTimeout(function(){text3.text("1")},1400),setTimeout(function(){text3.text("GO!")},2100),setTimeout(function(){text3.text("")},3100)}SVG.on(document,"keydown",function(e){paddleDirection=40==e.keyCode?1:38==e.keyCode?-1:0,e.preventDefault()}),SVG.on(document,"keyup",function(e){paddleDirection=0,e.preventDefault()}),draw.on("click",function(){text4.text(""),0===vx&&0===vy&&(vy=vx=300)});var ballColor=new SVG.Color("#ff0066");function boom(){var t=ball.cx()>width/2?paddleLeft:paddleRight,e=draw.gradient("radial",function(e){e.at(0,t.attr("fill"),1),e.at(1,t.attr("fill"),0)}),a=draw.circle(100);a.center(ball.cx(),ball.cy()).fill(e),a.animate(1e3,">").opacity(0).after(function(){a.remove()})}ballColor.morph("#00ff99");
+</script>
+
+</body>
+
+</html>
