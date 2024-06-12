@@ -71,15 +71,16 @@ MonoBehaviour:
   _playPongButtonFontSize: 13px
   _watchVideoButtonYoutubeLink: https://www.youtube.com/watch?v=FIpZ1h7LEos
   _disableMobileWarning: 1
-  _targetPath: /Users/underpinmacgamedev/Desktop/SlotsWebgl/GoldenChinaTown/Gslots
+  _targetPath: /Users/gamedev2/Desktop/Unity/Build/GoldOfEgypt
   _s11: "\n    &&& title2019start &&&<title>%UNITY_WEB_NAME%</title>&&& title2019end
-    &&&\n    &&& title2020start &&&<title>SlotsUP</title>&&& title2020end &&&\n   
+    &&&\n    &&& title2020start &&&<title>Gold of Egypt</title>&&& title2020end &&&\n   
     &&& UnityLoader1 &&& <script src=\"%UNITY_WEBGL_LOADER_URL%\"></script> &&& UnityLoader2
     &&&\n    "
   _s21: "\n            applicationInstance = UnityLoader.instantiate(\"gameContainer\",
     \"%UNITY_WEBGL_BUILD_URL%\", {onProgress: UnityProgress});\n            "
-  _s31: "\n    var buildUrl = \"Build\";\n    var loaderUrl = buildUrl + \"/Gslots.loader.js\";\n   
-    var config = {\n        dataUrl: buildUrl + \"/Gslots.data\",\n        frameworkUrl:
-    buildUrl + \"/Gslots.framework.js\",\n        codeUrl: buildUrl + \"/Gslots.wasm\",\n       
-    streamingAssetsUrl: \"StreamingAssets\",\n        companyName: \"UnderpinServices\",\n       
-    productName: \"SlotsUP\",\n        productVersion: \"1.0\",\n    };\n"
+  _s31: "\n    var buildUrl = \"Build\";\n    var loaderUrl = buildUrl + \"/GoldOfEgypt.loader.js\";\n   
+    var config = {\n        dataUrl: buildUrl + \"/GoldOfEgypt.data.unityweb\",\n       
+    frameworkUrl: buildUrl + \"/GoldOfEgypt.framework.js.unityweb\",\n        codeUrl:
+    buildUrl + \"/GoldOfEgypt.wasm.unityweb\",\n        streamingAssetsUrl: \"StreamingAssets\",\n       
+    companyName: \"DefaultCompany\",\n        productName: \"Gold of Egypt\",\n       
+    productVersion: \"1.0\",\n    };\n"

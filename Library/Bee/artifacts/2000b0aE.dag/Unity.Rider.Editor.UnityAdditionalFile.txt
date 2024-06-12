@@ -1,1 +1,1 @@
-D:\unityMTT\Slot-GoldOfEgypt
+/Users/gamedev2/Slot-GoldOfEgypt

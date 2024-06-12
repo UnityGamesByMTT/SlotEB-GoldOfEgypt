@@ -13,12 +13,12 @@ public class AudioController : MonoBehaviour
 
     private void Start()
     {
-        audioPlayer_button.clip = clips[clips.Length-1];
+        if (bg_adudio) bg_adudio.Play();
     }
 
     internal void PlayWLAudio(string type)
     {
-        
+
         int index = 0;
         switch (type)
         {
@@ -33,16 +33,33 @@ public class AudioController : MonoBehaviour
                 break;
         }
         StopWLAaudio();
-        audioPlayer_wl.clip = clips[index];
         audioPlayer_wl.loop = true;
         audioPlayer_wl.Play();
 
     }
 
-    internal void PlayButtonAudio() {
+    private void OnApplicationFocus(bool focus)
+    {
+        if (!focus)
+        {
+
+            bg_adudio.Pause();
+            audioPlayer_wl.Pause();
+            audioPlayer_button.Pause();
+        }
+        else
+        {
+            if (!bg_adudio.mute) bg_adudio.Play();
+            if (!audioPlayer_wl.mute) audioPlayer_wl.Play();
+            if (!audioPlayer_button.mute) audioPlayer_button.Play();
+
+        }
+    }
+
+    internal void PlayButtonAudio()
+    {
         StopButtonAudio();
         audioPlayer_button.Play();
-        Invoke("StopButtonAudio", audioPlayer_button.clip.length);
 
     }
 
@@ -52,18 +69,21 @@ public class AudioController : MonoBehaviour
         audioPlayer_wl.loop = false;
     }
 
-    internal void StopButtonAudio() {
+    internal void StopButtonAudio()
+    {
 
         audioPlayer_button.Stop();
 
     }
 
-    internal void StopBgAudio() {
+    internal void StopBgAudio()
+    {
         bg_adudio.Stop();
 
     }
 
-    internal void ToggleMute(bool toggle, string type="all") {
+    internal void ToggleMute(bool toggle, string type = "all")
+    {
 
         switch (type)
         {
@@ -71,10 +91,10 @@ public class AudioController : MonoBehaviour
                 bg_adudio.mute = toggle;
                 break;
             case "button":
-                audioPlayer_button.mute=toggle;
+                audioPlayer_button.mute = toggle;
                 break;
             case "wl":
-                audioPlayer_wl.mute=toggle;
+                audioPlayer_wl.mute = toggle;
                 break;
             case "all":
                 audioPlayer_wl.mute = toggle;
