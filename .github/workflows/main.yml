@@ -1,0 +1,95 @@
+name: Unity WebGL Automatic Build 👽✨🚀
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+permissions:
+  contents: write  # Changed to write for push operations
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Unity Build 👽
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout (without LFS)
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT }}
+
+      # Git LFS
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v3
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      # Cache
+      - uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: ${{ vars.TARGET_PLATFORM }}
+          buildsPath: ${{ vars.BUILD_PATH }}
+          allowDirtyBuild: true
+
+      # Output: Artifact
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ vars.ARTIFACT_NAME }}
+          path: ${{ vars.BUILD_PATH }}
+
+      # Deployment
+      - name: Configure Git
+        run: |
+          git config --global user.email "${{ secrets.GH_EMAIL }}"
+          git config --global user.name "${{ secrets.GH_USERNAME }}"
+          git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
+
+      - name: Stash build result and reset local changes
+        run: |
+          echo "Applying initial configs"
+          sudo chown -R $USER:$USER ${{ vars.BUILD_PATH }}
+          echo "Stash and reset"
+          git add -f ${{ vars.BUILD_PATH }}/${{ vars.TARGET_PLATFORM }}
+          git config advice.addIgnoredFile false
+          git status
+          git commit -m "Build"
+          git push origin HEAD:main
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
