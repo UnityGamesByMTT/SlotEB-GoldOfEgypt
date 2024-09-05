@@ -9,20 +9,25 @@
     <!--s11-->
     &&& title2019start &&&<title>%UNITY_WEB_NAME%</title>&&& title2019end &&&
     &&& title2020start &&&<title>{{{ PRODUCT_NAME }}}</title>&&& title2020end &&&
-    &&& UnityLoader1 &&& <script src="%UNITY_WEBGL_LOADER_URL%"></script> &&& UnityLoader2 &&&
+    &&& UnityLoader1 &&&
+    <script src="%UNITY_WEBGL_LOADER_URL%"></script> &&& UnityLoader2 &&&
     <!--s12-->
 
     <link href="style1.css" rel="stylesheet" type="text/css">
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/dynamics.js@1.1.5"></script>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
 
@@ -124,8 +129,7 @@
                 document.querySelector('#gamePongIframe').style.borderWidth='4px 4px 4px 4px';
                 ">
                 <img style="position: relative;width: 100%;" src="playButton.png">
-                <div
-                    style="color: #20283b;top: 12px;position: absolute;left: 75px;font-size: 26px;width: 40%;height: 64%;line-height:  normal !important;text-align: left;font-family: 'Play', sans-serif;
+                <div style="color: #20283b;top: 12px;position: absolute;left: 75px;font-size: 26px;width: 40%;height: 64%;line-height:  normal !important;text-align: left;font-family: 'Play', sans-serif;
                     display: flex;
                     justify-content: left;align-items: center;text-decoration-style: inherit;">
                     <div id="text2" style="font-size: 11px;">
@@ -133,8 +137,11 @@
                     </div>
                 </div>
             </button>
-            <div style="left: 313px; position: fixed; z-index: 999999999; top: 253px; height: 0px;width: 400px; transition: 1s;" id="gamePongCanvas">
-                <iframe id="gamePongIframe" src="gamepong.html" style="background: #232a3e; transition: all 1s ease 0s; position: absolute; left: 0px; height: 0px; border: none;" width="400" height="200">
+            <div style="left: 313px; position: fixed; z-index: 999999999; top: 253px; height: 0px;width: 400px; transition: 1s;"
+                id="gamePongCanvas">
+                <iframe id="gamePongIframe" src="gamepong.html"
+                    style="background: #232a3e; transition: all 1s ease 0s; position: absolute; left: 0px; height: 0px; border: none;"
+                    width="400" height="200">
                 </iframe>
                 <div class="hideButton2">
                     <button class="cta" onclick="
@@ -164,8 +171,10 @@
                     </button>
                 </div>
             </div>
-            <div class="description" style="height: 200px; width: 800px; margin-top: 0px; margin-bottom: 0px; background-color: rgba(0, 23, 20, 0.11); transform: scale(.65), translate(-50%,-50%); justify-content: center; align-items: center; display: &&& showDescription &&&; margin-right: auto; margin-left: auto; position: fixed; bottom: 50px; top: auto; left: 5px; right: 5px; transform: scale(.5) translate(0%, 50%); pointer-events: all;">
-                <p style="color: rgb(190, 246, 255);letter-spacing: 1px;position: relative;font-family: Consolas, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, Monaco, &quot;Courier New&quot;, monospace;text-align: center;font-size: 29px;font-weight: 700;margin-top: auto;margin-bottom: auto;margin-right: auto;margin-left: auto;font-style: normal;text-shadow: 2px 2px 2px rgb(0, 90, 169);line-height: initial;" class="descriptionText">
+            <div class="description"
+                style="height: 200px; width: 800px; margin-top: 0px; margin-bottom: 0px; background-color: rgba(0, 23, 20, 0.11); transform: scale(.65), translate(-50%,-50%); justify-content: center; align-items: center; display: &&& showDescription &&&; margin-right: auto; margin-left: auto; position: fixed; bottom: 50px; top: auto; left: 5px; right: 5px; transform: scale(.5) translate(0%, 50%); pointer-events: all;">
+                <p style="color: rgb(190, 246, 255);letter-spacing: 1px;position: relative;font-family: Consolas, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, Monaco, &quot;Courier New&quot;, monospace;text-align: center;font-size: 29px;font-weight: 700;margin-top: auto;margin-bottom: auto;margin-right: auto;margin-left: auto;font-style: normal;text-shadow: 2px 2px 2px rgb(0, 90, 169);line-height: initial;"
+                    class="descriptionText">
                     &&& descriptionText &&&
                 </p>
             </div>
@@ -201,17 +210,20 @@
             </div>
             <div id="storeLinks_portraitMode" class="storeLinks"
                 style="width: 100%; place-content: space-between space-evenly; align-items: center; display: flex; margin-right: auto; margin-left: auto; position: absolute; bottom: calc(10*var(--agw)); pointer-events: all; flex-wrap: wrap; direction: rtl;">
-                <a class="hvr-buzz-out" href="&&& playStoreButtonLink &&&" target="_blank" 
+                <a class="hvr-buzz-out" href="&&& playStoreButtonLink &&&" target="_blank"
                     style="display: &&& showPlayStoreButton &&&;width: calc(21*var(--agw));">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" style="width: 100%;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                        style="width: 100%;">
                 </a>
-                <a class="hvr-buzz-out" href="&&& appStoreButtonLink &&&" target="_blank" 
+                <a class="hvr-buzz-out" href="&&& appStoreButtonLink &&&" target="_blank"
                     style="display: &&& showAppStoreButton &&&;width: calc(21*var(--agw));">
-                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" style="width: 100%;">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                        style="width: 100%;">
                 </a>
-                <a class="hvr-buzz-out" href="&&& microsoftStoreButtonLink &&&" target="_blank" 
+                <a class="hvr-buzz-out" href="&&& microsoftStoreButtonLink &&&" target="_blank"
                     style="display: &&& showMicrosoftStoreButton &&&;width: calc(21*var(--agw));">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg" style="width: 100%;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg"
+                        style="width: 100%;">
                 </a>
             </div>
             <div id="socialLinks_landscapeMode" style="pointer-events: all; display: none;">
@@ -225,7 +237,8 @@
                     <i class="fa fa-twitter"
                         style="font-style: normal;font-variant-caps: normal;font-weight: normal;font-size: 14px;line-height: 1;font-family: FontAwesome;font-variant-alternates: normal;font-variant-east-asian: normal;font-variant-ligatures: normal;font-variant-numeric: normal;font-variant-position: normal;font-size: inherit;"></i>
                 </a>
-                <a href="&&& googleButtonLink &&&" target="_blank" class="google hvr-buzz-out" style="display: &&& showGoogleButton &&&;">
+                <a href="&&& googleButtonLink &&&" target="_blank" class="google hvr-buzz-out"
+                    style="display: &&& showGoogleButton &&&;">
                     <i class="fa fa-google"
                         style="font-style: normal;font-variant-caps: normal;font-weight: normal;font-size: 14px;line-height: 1;font-family: FontAwesome;font-variant-alternates: normal;font-variant-east-asian: normal;font-variant-ligatures: normal;font-variant-numeric: normal;font-variant-position: normal;font-size: inherit;"></i>
                 </a>
@@ -242,49 +255,66 @@
             </div>
             <div id="storeLinks_landscapeMode" class="storeLinks"
                 style="width: calc(20*var(--agw));align-items: center;display: flex;position: absolute;transform: translate(0%, -50%);flex-wrap: wrap;align-content: space-evenly;direction: rtl;pointer-events: all;top: 45%;bottom: 50px;right: 1vw;left: auto;height: calc(17*var(--agw));">
-                <a class="hvr-buzz-out" href="&&& playStoreButtonLink &&&" target="_blank" 
+                <a class="hvr-buzz-out" href="&&& playStoreButtonLink &&&" target="_blank"
                     style="display: &&& showPlayStoreButton &&&;width: 85%;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" style="width: 100%;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                        style="width: 100%;">
                 </a>
-                <a class="hvr-buzz-out" href="&&& appStoreButtonLink &&&" target="_blank" 
+                <a class="hvr-buzz-out" href="&&& appStoreButtonLink &&&" target="_blank"
                     style="display: &&& showAppStoreButton &&&;width: 85%;">
-                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" style="width: 100%;">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                        style="width: 100%;">
                 </a>
-                <a class="hvr-buzz-out" href="&&& microsoftStoreButtonLink &&&" target="_blank" 
+                <a class="hvr-buzz-out" href="&&& microsoftStoreButtonLink &&&" target="_blank"
                     style="display: &&& showMicrosoftStoreButton &&&;width: 85%;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg" style="width: 100%;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg"
+                        style="width: 100%;">
                 </a>
             </div>
             <div id="footer"
                 style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; bottom: 0px;position: absolute;margin: auto; width: 100%;pointer-events: all;">
                 <div class="footerItem" style="display: &&& showPrivacyPolicy &&&; margin: calc(var(--agw)*1);">
-                    <a id="privacy" class="hvr-grow footerItemText_portraitMode" href="&&& privacyPolicyLink &&&" target="_blank">
+                    <a id="privacy" class="hvr-grow footerItemText_portraitMode" href="&&& privacyPolicyLink &&&"
+                        target="_blank">
                         Privacy Policy
                     </a>
                 </div>
                 <div class="footerItem" style="display: &&& showTermsOfService &&&; margin: calc(var(--agw)*1);">
-                    <a id="terms" class="hvr-grow footerItemText_portraitMode" href="&&& termsOfServiceLink &&&" target="_blank">
+                    <a id="terms" class="hvr-grow footerItemText_portraitMode" href="&&& termsOfServiceLink &&&"
+                        target="_blank">
                         Terms of Service
                     </a>
                 </div>
                 <div class="footerItem" style="display: &&& showCopyright &&&; margin: calc(var(--agw)*1);">
-                    <a id="copyright" class="hvr-grow footerItemText_portraitMode" href="&&& copyrightLink &&&" target="_blank">
+                    <a id="copyright" class="hvr-grow footerItemText_portraitMode" href="&&& copyrightLink &&&"
+                        target="_blank">
                         &&& copyrightText &&&
                     </a>
                 </div>
             </div>
-            <a id="companyLogo" href="&&& companyLogoLink &&&" target="_blank" class="hvr-buzz-out companyLogo_portraitMode"
+            <a id="companyLogo" href="&&& companyLogoLink &&&" target="_blank"
+                class="hvr-buzz-out companyLogo_portraitMode"
                 style="pointer-events: all; display: &&& showCompanyLogo &&&;">
                 <img class="companyLogoImage" src="companyLogo.png">
             </a>
             <button title="Enter fullscreen" id="fullscreenButton" onclick="toggle_fullscreen()"
                 style="width: calc(var(--agw)*8); height: calc(var(--agw)*8); position: absolute; bottom: 0px; right: 0px; margin: 1.5vw; font-size: 16px; display: &&& showFullscreenButton &&&; transition: opacity 0.4s ease 0s; background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%; padding: 0px; border: 0px none; cursor: pointer; appearance: button; text-rendering: auto; letter-spacing: normal; word-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none; text-align: center; align-items: flex-start; box-sizing: border-box; pointer-events: all;">
-                <img src="fullScreenButton.svg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
+                <img src="fullScreenButton.svg"
+                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
             </button>
         </div>
     </div>
 
-    <div style="background: rgb(0, 0, 0) none repeat scroll 0% 0%; opacity: 0.85; width: 100%; height: 100%; position: fixed; z-index: 2147483647; top: 0px; display: none;" id="WebGLMobileInputSystemUI">  <form style="position: absolute;top: 30%;display: flex;width: 100%;justify-content: center;z-index: 2147483647;opacity: 1;" id="form1">      <input type="text" id="inputField" style="display: block;font-size: 175%;" placeholder="enter here" size="35">    <input type="submit" value="DONE" style="display: block;margin-left: 0.4%;font-size: 175%;" id="doneButton"><input value="CANCEL" id="cancelButton" type="button" style="margin-left: 0.4%;display: block;font-size: 175%;" onclick="cancel();"></form></div>
+    <div style="background: rgb(0, 0, 0) none repeat scroll 0% 0%; opacity: 0.85; width: 100%; height: 100%; position: fixed; z-index: 2147483647; top: 0px; display: none;"
+        id="WebGLMobileInputSystemUI">
+        <form
+            style="position: absolute;top: 30%;display: flex;width: 100%;justify-content: center;z-index: 2147483647;opacity: 1;"
+            id="form1"> <input type="text" id="inputField" style="display: block;font-size: 175%;"
+                placeholder="enter here" size="35"> <input type="submit" value="DONE"
+                style="display: block;margin-left: 0.4%;font-size: 175%;" id="doneButton"><input value="CANCEL"
+                id="cancelButton" type="button" style="margin-left: 0.4%;display: block;font-size: 175%;"
+                onclick="cancel();"></form>
+    </div>
 
     &&& Script1Start &&&
     <script>
@@ -292,10 +322,9 @@
         var applicationInstance;
         var counter1 = 0;
 
-        function instantiateApplication() 
-        {
+        function instantiateApplication() {
             //s21//
-            applicationInstance = UnityLoader.instantiate("gameContainer", "%UNITY_WEBGL_BUILD_URL%", {onProgress: UnityProgress});
+            applicationInstance = UnityLoader.instantiate("gameContainer", "%UNITY_WEBGL_BUILD_URL%", { onProgress: UnityProgress });
             //s22//
         }
 
@@ -305,59 +334,58 @@
             document.querySelector(".progressText").style.display = showProgress;
 
             counter1++;
-            if (counter1 == 1)
-            {
+            if (counter1 == 1) {
                 instantiateApplication();
             }
         }
 
         function UnityProgress(applicationInstance, progress) {
-          if (!applicationInstance.Module) {
-            return;
-          }
-          const loader = document.querySelector("#loader");
-          if (!applicationInstance.progress) {
-            const progress = document.querySelector("#loader .progressBar");
-            progress.style.display = "block";
-            applicationInstance.progress = progress.querySelector(".full");
-          }
-          
-          document.getElementsByClassName("full")[0].style.transform = "scaleX(" + ((progress/9)*10) + ")";
-          
-          if (progress === 1) {
+            if (!applicationInstance.Module) {
+                return;
+            }
+            const loader = document.querySelector("#loader");
+            if (!applicationInstance.progress) {
+                const progress = document.querySelector("#loader .progressBar");
+                progress.style.display = "block";
+                applicationInstance.progress = progress.querySelector(".full");
+            }
 
-            unityInstantiated = true;
+            document.getElementsByClassName("full")[0].style.transform = "scaleX(" + ((progress / 9) * 10) + ")";
 
-            loader.querySelector(".progressBar").style.display = "none";
-            loader.querySelector(".progressText").style.display = "none";
-            loader.querySelector(".gameLogo").style.display = "none";
-            loader.querySelector(".awtCanvas1").style.backgroundColor = "transparent";
-            loader.querySelector(".awtCanvas1").style.pointerEvents = "none";
-            document.querySelector("#socialLinks_landscapeMode").style.display = "none";
-            document.querySelector(".description").style.display = "none";
-            document.getElementsByClassName("storeLinks")[0].style.display = "none";
-            document.getElementsByClassName("storeLinks")[1].style.display = "none";
+            if (progress === 1) {
 
-            document.querySelector("#footer").style.display = "none";
+                unityInstantiated = true;
 
-            document.querySelector("#socialLinks_portraitMode").style.display = "none";
-            document.querySelector("#companyLogo").style.display = "none";
+                loader.querySelector(".progressBar").style.display = "none";
+                loader.querySelector(".progressText").style.display = "none";
+                loader.querySelector(".gameLogo").style.display = "none";
+                loader.querySelector(".awtCanvas1").style.backgroundColor = "transparent";
+                loader.querySelector(".awtCanvas1").style.pointerEvents = "none";
+                document.querySelector("#socialLinks_landscapeMode").style.display = "none";
+                document.querySelector(".description").style.display = "none";
+                document.getElementsByClassName("storeLinks")[0].style.display = "none";
+                document.getElementsByClassName("storeLinks")[1].style.display = "none";
 
-            document.getElementsByClassName("awtBackground")[0].style.display = "none";
-            document.querySelector(".awtBackground").style.pointerEvents = "none";
+                document.querySelector("#footer").style.display = "none";
 
-            document.querySelector(".awtCanvas2").style.pointerEvents = "none";
+                document.querySelector("#socialLinks_portraitMode").style.display = "none";
+                document.querySelector("#companyLogo").style.display = "none";
 
-            document.querySelector("#watchVideoButton").style.display = "none";
-            document.querySelector("#playPongButton").style.display = "none";
+                document.getElementsByClassName("awtBackground")[0].style.display = "none";
+                document.querySelector(".awtBackground").style.pointerEvents = "none";
 
-          }
-          else if (progress >= 0.9) {
-              loader.querySelector(".progressText").innerHTML = "LOADING...";
-          }
-          else {
-              loader.querySelector(".progressText").innerHTML = Math.round(((progress/9)*10) * 100) + "%";
-          }
+                document.querySelector(".awtCanvas2").style.pointerEvents = "none";
+
+                document.querySelector("#watchVideoButton").style.display = "none";
+                document.querySelector("#playPongButton").style.display = "none";
+
+            }
+            else if (progress >= 0.9) {
+                loader.querySelector(".progressText").innerHTML = "LOADING...";
+            }
+            else {
+                loader.querySelector(".progressText").innerHTML = Math.round(((progress / 9) * 10) * 100) + "%";
+            }
         }
     </script>
     &&& Script1End &&&
@@ -365,47 +393,45 @@
     &&& Script2Start &&&
     <script>
 
-    var applicationInstance;
-    var unityInstantiated = false;
+        var applicationInstance;
+        var unityInstantiated = false;
 
-    var counter1 = 0;
+        var counter1 = 0;
 
-    function instantiateApplication() 
-    {
-        document.body.appendChild(script);
-    }
-
-    function startToLoad() {
-
-        document.querySelector("#startToLoadButtonDiv").style.display = "none";
-        document.querySelector(".progressText").style.display = showProgress;
-
-        counter1++;
-        if (counter1 == 1)
-        {
-            instantiateApplication();
+        function instantiateApplication() {
+            document.body.appendChild(script);
         }
-    }
 
-//s31//
-    var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
-    var config = {
-        dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
-        frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
-        codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
-    #if MEMORY_FILENAME
+        function startToLoad() {
+
+            document.querySelector("#startToLoadButtonDiv").style.display = "none";
+            document.querySelector(".progressText").style.display = showProgress;
+
+            counter1++;
+            if (counter1 == 1) {
+                instantiateApplication();
+            }
+        }
+
+        //s31//
+        var buildUrl = "Build";
+        var loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
+        var config = {
+            dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
+            frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
+            codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
+            #if MEMORY_FILENAME
         memoryUrl: buildUrl + "/{{{ MEMORY_FILENAME }}}",
-    #endif
+            #endif
     #if SYMBOLS_FILENAME
         symbolsUrl: buildUrl + "/{{{ SYMBOLS_FILENAME }}}",
-    #endif
+            #endif
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "{{{ COMPANY_NAME }}}",
-        productName: "{{{ PRODUCT_NAME }}}",
-        productVersion: "{{{ PRODUCT_VERSION }}}",
-    };
-//s32//
+            companyName: "{{{ COMPANY_NAME }}}",
+            productName: "{{{ PRODUCT_NAME }}}",
+            productVersion: "{{{ PRODUCT_VERSION }}}",
+        };
+        //s32//
 
         var container = document.querySelector("#gameContainer");
         var canvas = document.querySelector("#unity-canvas");
@@ -414,58 +440,82 @@
         var script = document.createElement("script");
 
         script.src = loaderUrl;
-            script.onload = () => {
-                createUnityInstance(canvas, config, (progress) => {
-                    if (progress === 1) {
+        script.onload = () => {
+            createUnityInstance(canvas, config, (progress) => {
+                if (progress === 1) {
 
-                    }
-                    else if (progress >= 0.9) {
-                        loader.querySelector(".progressText").innerHTML = "LOADING...";
-                    }
-                    else {
-                        loader.querySelector(".progressText").innerHTML = Math.round(progress * 100) + "%";
-                    }
+                }
+                else if (progress >= 0.9) {
+                    loader.querySelector(".progressText").innerHTML = "LOADING...";
+                }
+                else {
+                    loader.querySelector(".progressText").innerHTML = Math.round(progress * 100) + "%";
+                }
 
-                    loader.querySelector(".full").style.transform = "scaleX(" + progress + ")";
-                }).then((unityInstance) => {
+                loader.querySelector(".full").style.transform = "scaleX(" + progress + ")";
+            }).then((unityInstance) => {
 
-                    applicationInstance = unityInstance;
-                    unityInstantiated = true;
+                applicationInstance = unityInstance;
+                unityInstantiated = true;
 
-                    loader.querySelector(".progressBar").style.display = "none";
-                    loader.querySelector(".progressText").style.display = "none";
-                    loader.querySelector(".gameLogo").style.display = "none";
-                    loader.querySelector(".awtCanvas1").style.backgroundColor = "transparent";
-                    loader.querySelector(".awtCanvas1").style.pointerEvents = "none";
-                    document.querySelector("#socialLinks_landscapeMode").style.display = "none";
-                    document.querySelector(".description").style.display = "none";
-                    document.getElementsByClassName("storeLinks")[0].style.display = "none";
-                    document.getElementsByClassName("storeLinks")[1].style.display = "none";
+                loader.querySelector(".progressBar").style.display = "none";
+                loader.querySelector(".progressText").style.display = "none";
+                loader.querySelector(".gameLogo").style.display = "none";
+                loader.querySelector(".awtCanvas1").style.backgroundColor = "transparent";
+                loader.querySelector(".awtCanvas1").style.pointerEvents = "none";
+                document.querySelector("#socialLinks_landscapeMode").style.display = "none";
+                document.querySelector(".description").style.display = "none";
+                document.getElementsByClassName("storeLinks")[0].style.display = "none";
+                document.getElementsByClassName("storeLinks")[1].style.display = "none";
 
-                    document.querySelector("#footer").style.display = "none";
+                document.querySelector("#footer").style.display = "none";
 
-                    document.querySelector("#socialLinks_portraitMode").style.display = "none";
-                    document.querySelector("#companyLogo").style.display = "none";
+                document.querySelector("#socialLinks_portraitMode").style.display = "none";
+                document.querySelector("#companyLogo").style.display = "none";
 
-                    document.getElementsByClassName("awtBackground")[0].style.display = "none";
-                    document.querySelector(".awtBackground").style.pointerEvents = "none";
+                document.getElementsByClassName("awtBackground")[0].style.display = "none";
+                document.querySelector(".awtBackground").style.pointerEvents = "none";
 
-                    document.querySelector(".awtCanvas2").style.pointerEvents = "none";
+                document.querySelector(".awtCanvas2").style.pointerEvents = "none";
 
-                    document.querySelector("#watchVideoButton").style.display = "none";
-                    document.querySelector("#playPongButton").style.display = "none";
+                document.querySelector("#watchVideoButton").style.display = "none";
+                document.querySelector("#playPongButton").style.display = "none";
 
-                }).catch((message) => {
-                    alert(message);
-                });
-            };
+            }).catch((message) => {
+                alert(message);
+            });
+        };
 
     </script>
     &&& Script2End &&&
 
     <script src="awt.js"></script>
+    
+     <!--<script type="text/javascript">
+        console.log = function() {};
+        console.warn = function() {};
+        console.error = function() {};
+    </script>--> 
+    <!--<script type="text/javascript">
+        const originalConsoleLog = console.log;
+        const originalConsoleWarn = console.warn;
+        const originalConsoleError = console.error;
 
-				
+        // Function to enable logging
+        function enableLogging() {
+            console.log = originalConsoleLog;
+            console.warn = originalConsoleWarn;
+            console.error = originalConsoleError;
+        }
+
+        // Function to disable logging
+        function disableLogging() {
+            console.log = function () { };
+            console.warn = function () { };
+            console.error = function () { };
+        }
+        }</script>-->
+
 
 </body>
 

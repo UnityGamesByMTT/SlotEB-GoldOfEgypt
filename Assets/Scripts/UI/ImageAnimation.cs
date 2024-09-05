@@ -4,128 +4,160 @@ using UnityEngine.UI;
 
 public class ImageAnimation : MonoBehaviour
 {
-	public enum ImageState
-	{
-		NONE,
-		PLAYING,
-		PAUSED
-	}
+    public enum ImageState
+    {
+        NONE,
+        PLAYING,
+        PAUSED
+    }
 
-	public static ImageAnimation Instance;
+    public static ImageAnimation Instance;
 
-	public List<Sprite> textureArray;
+    public List<Sprite> textureArray;
 
-	public Image rendererDelegate;
+    public Image rendererDelegate;
 
-	public bool useSharedMaterial = true;
+    public bool useSharedMaterial = true;
 
-	public bool doLoopAnimation = true;
+    public bool doLoopAnimation = true;
 
-	[HideInInspector]
-	public ImageState currentAnimationState;
+    [HideInInspector]
+    public ImageState currentAnimationState;
 
-	private int indexOfTexture;
+    private int indexOfTexture;
 
-	private float idealFrameRate = 0.0416666679f;
+    private float idealFrameRate = 0.0416666679f;
 
-	private float delayBetweenAnimation;
+    private float delayBetweenAnimation;
 
-	public float AnimationSpeed = 5f;
+    public float AnimationSpeed = 5f;
 
-	public float delayBetweenLoop;
+    public float delayBetweenLoop;
 
-	private void Awake()
-	{
-		if (Instance == null)
-		{
-			Instance = this;
-		}
-	}
+    public bool StartOnAwake = false;
 
-	private void OnEnable()
-	{
+    public bool DestroyOnCompletion = false;
 
-	}
+    [SerializeField] internal bool isplaying;
 
-	private void OnDisable()
-	{
-		//rendererDelegate.sprite = textureArray[0];
-		StopAnimation();
-	}
+    [SerializeField]
+    private Sprite OriginalSprite;
 
-	private void AnimationProcess()
-	{
-		SetTextureOfIndex();
-		indexOfTexture++;
-		if (indexOfTexture == textureArray.Count)
-		{
-			indexOfTexture = 0;
-			if (doLoopAnimation)
-			{
-				Invoke("AnimationProcess", delayBetweenAnimation + delayBetweenLoop);
-			}
-		}
-		else
-		{
-			Invoke("AnimationProcess", delayBetweenAnimation);
-		}
-	}
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
-	public void StartAnimation()
-	{
-		indexOfTexture = 0;
-		if (currentAnimationState == ImageState.NONE)
-		{
-			RevertToInitialState();
-			delayBetweenAnimation = idealFrameRate * (float)textureArray.Count / AnimationSpeed;
-			currentAnimationState = ImageState.PLAYING;
-			Invoke("AnimationProcess", delayBetweenAnimation);
-		}
-	}
+    private void Start()
+    {
+        OriginalSprite = rendererDelegate.sprite;
+    }
 
-	public void PauseAnimation()
-	{
-		if (currentAnimationState == ImageState.PLAYING)
-		{
-			CancelInvoke("AnimationProcess");
-			currentAnimationState = ImageState.PAUSED;
-		}
-	}
+    private void OnEnable()
+    {
+        if (StartOnAwake)
+        {
+            StartAnimation();
+        }
+    }
 
-	public void ResumeAnimation()
-	{
-		if (currentAnimationState == ImageState.PAUSED && !IsInvoking("AnimationProcess"))
-		{
-			Invoke("AnimationProcess", delayBetweenAnimation);
-			currentAnimationState = ImageState.PLAYING;
-		}
-	}
+    private void OnDisable()
+    {
+        StopAnimation();
+    }
 
-	public void StopAnimation()
-	{
-		if (currentAnimationState != 0)
-		{
-			rendererDelegate.sprite = textureArray[0];
-			CancelInvoke("AnimationProcess");
-			currentAnimationState = ImageState.NONE;
-		}
-	}
+    private void AnimationProcess()
+    {
+        isplaying = true;
+        SetTextureOfIndex();
+        indexOfTexture++;
+        if (indexOfTexture == textureArray.Count)
+        {
+            indexOfTexture = 0;
+            if (doLoopAnimation)
+            {
+                Invoke("AnimationProcess", delayBetweenAnimation + delayBetweenLoop);
+                isplaying = true;
+            }
+            else
+            {
+                if (DestroyOnCompletion)
+                {
+                    this.gameObject.SetActive(false);
+                }
+                isplaying = false;
+            }
+        }
+        else
+        {
+            Invoke("AnimationProcess", delayBetweenAnimation);
+            isplaying = true;
 
-	public void RevertToInitialState()
-	{
-		indexOfTexture = 0;
-		SetTextureOfIndex();
-	}
+        }
+    }
 
-	private void SetTextureOfIndex()
-	{
-		if (useSharedMaterial)
-		{
-			rendererDelegate.sprite = textureArray[indexOfTexture];
-		}
-		else
-		{
-			rendererDelegate.sprite = textureArray[indexOfTexture];
-		}
-	}
+    public void StartAnimation()
+    {
+        indexOfTexture = 0;
+        if (currentAnimationState == ImageState.NONE)
+        {
+            RevertToInitialState();
+            delayBetweenAnimation = idealFrameRate * (float)textureArray.Count / AnimationSpeed;
+            currentAnimationState = ImageState.PLAYING;
+            Invoke("AnimationProcess", delayBetweenAnimation);
+        }
+    }
+
+    public void PauseAnimation()
+    {
+        if (currentAnimationState == ImageState.PLAYING)
+        {
+            CancelInvoke("AnimationProcess");
+            currentAnimationState = ImageState.PAUSED;
+        }
+    }
+
+    public void ResumeAnimation()
+    {
+        if (currentAnimationState == ImageState.PAUSED && !IsInvoking("AnimationProcess"))
+        {
+            Invoke("AnimationProcess", delayBetweenAnimation);
+            currentAnimationState = ImageState.PLAYING;
+        }
+    }
+
+    public void StopAnimation()
+    {
+        if (currentAnimationState != 0)
+        {
+            if (OriginalSprite != null)
+                rendererDelegate.sprite = OriginalSprite;
+            else
+                rendererDelegate.sprite = textureArray[0];
+            CancelInvoke("AnimationProcess");
+            currentAnimationState = ImageState.NONE;
+            isplaying = false;
+        }
+    }
+
+    public void RevertToInitialState()
+    {
+        indexOfTexture = 0;
+        SetTextureOfIndex();
+    }
+
+    private void SetTextureOfIndex()
+    {
+        if (useSharedMaterial)
+        {
+            rendererDelegate.sprite = textureArray[indexOfTexture];
+        }
+        else
+        {
+            rendererDelegate.sprite = textureArray[indexOfTexture];
+        }
+    }
 }

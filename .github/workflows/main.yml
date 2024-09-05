@@ -1,16 +1,13 @@
 name: Unity WebGL Automatic Build 👽✨🚀
 
 on:
-  push:
-    branches:
-      - 'main'
   pull_request:
-    branches:
-      - 'main'
+    branches:    
+      - 'dev-build'
   workflow_dispatch:
 
 permissions:
-  contents: write  # Changed to write for push operations
+  contents: read
   pages: write
   id-token: write
 
@@ -30,10 +27,13 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
 
-      # Git LFS
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          ls
+          git reset --hard
       - name: Restore LFS cache
         uses: actions/cache@v3
         id: lfs-cache
@@ -41,20 +41,28 @@ jobs:
           path: .git/lfs
           key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
 
-      - name: Git LFS Pull
+      - name: Verify LFS Cache
         run: |
-          git lfs pull
-          git add .
-          git reset --hard
-
-      # Cache
-      - uses: actions/cache@v3
+          echo "LFS cache directory contents:"
+          ls -al .git/lfs || echo ".git/lfs directory does not exist"
+          
+        # Git LFS
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+          
+      # Cache Unity Library
+      - name: Cache Library directory
+        uses: actions/cache@v3
+        id: unity-cache
         with:
           path: Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
-
+      - name: Verify Library Cache
+        run: |
+          echo "Library directory contents:"
+          ls -al Library || echo "Library directory does not exist"
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v4
@@ -63,7 +71,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          targetPlatform: ${{ vars.TARGET_PLATFORM }}
+          targetPlatform: WebGL
           buildsPath: ${{ vars.BUILD_PATH }}
           allowDirtyBuild: true
 
@@ -75,21 +83,15 @@ jobs:
           path: ${{ vars.BUILD_PATH }}
 
       # Deployment
-      - name: Configure Git
-        run: |
-          git config --global user.email "${{ secrets.GH_EMAIL }}"
-          git config --global user.name "${{ secrets.GH_USERNAME }}"
-          git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
-
       - name: Stash build result and reset local changes
         run: |
           echo "Applying initial configs"
           sudo chown -R $USER:$USER ${{ vars.BUILD_PATH }}
+          git config --global user.email "${{ secrets.GH_EMAIL }}"
+          git config --global user.name "${{ secrets.GH_USERNAME }}"
           echo "Stash and reset"
           git add -f ${{ vars.BUILD_PATH }}/${{ vars.TARGET_PLATFORM }}
           git config advice.addIgnoredFile false
           git status
           git commit -m "Build"
-          git push origin HEAD:main
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          git push origin HEAD:dev-build --force
