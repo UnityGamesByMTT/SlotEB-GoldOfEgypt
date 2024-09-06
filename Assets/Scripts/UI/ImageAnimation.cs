@@ -40,8 +40,8 @@ public class ImageAnimation : MonoBehaviour
 
     [SerializeField] internal bool isplaying;
 
-    [SerializeField]
-    private Sprite OriginalSprite;
+    //[SerializeField]
+    //private Sprite OriginalSprite;
 
     private void Awake()
     {
@@ -49,11 +49,6 @@ public class ImageAnimation : MonoBehaviour
         {
             Instance = this;
         }
-    }
-
-    private void Start()
-    {
-        OriginalSprite = rendererDelegate.sprite;
     }
 
     private void OnEnable()
@@ -133,10 +128,7 @@ public class ImageAnimation : MonoBehaviour
     {
         if (currentAnimationState != 0)
         {
-            if (OriginalSprite != null)
-                rendererDelegate.sprite = OriginalSprite;
-            else
-                rendererDelegate.sprite = textureArray[0];
+            rendererDelegate.sprite = textureArray[0];
             CancelInvoke("AnimationProcess");
             currentAnimationState = ImageState.NONE;
             isplaying = false;
