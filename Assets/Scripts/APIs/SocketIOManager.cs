@@ -254,14 +254,6 @@ public class SocketIOManager : MonoBehaviour
     internal void CloseSocket()
     {
         SendDataWithNamespace("EXIT");
-        DOVirtual.DelayedCall(0.1f, () =>
-        {
-            if (this.manager != null)
-            {
-                Debug.Log("Dispose my Socket");
-                this.manager.Close();
-            }
-        });
     }
 
     private void ParseResponse(string jsonObject)
@@ -304,6 +296,16 @@ public class SocketIOManager : MonoBehaviour
                     isResultdone = true;
                     break;
                 }
+            case "ExitUser":
+                {
+                    if (this.manager != null)
+                    {
+                        Debug.Log("Dispose my Socket");
+                        this.manager.Close();
+                    }
+                    Application.ExternalCall("window.parent.postMessage", "onExit", "*");
+                    break;
+                }
         }
     }
 
@@ -323,6 +325,7 @@ public class SocketIOManager : MonoBehaviour
         slotManager.SetInitialUI();
 
         isLoaded = true;
+        Application.ExternalCall("window.parent.postMessage", "OnEnter", "*");
     }
 
     internal void AccumulateResult(double currBet)

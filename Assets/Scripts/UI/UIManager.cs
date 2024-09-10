@@ -188,6 +188,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private SocketIOManager socketManager;
+    [SerializeField]
+    private Button m_AwakeGameButton;
 
     private bool isMusic = true;
     private bool isSound = true;
@@ -199,8 +201,16 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Loading_Object) Loading_Object.SetActive(true);
-        StartCoroutine(LoadingRoutine());
+        //if (Loading_Object) Loading_Object.SetActive(true);
+        //StartCoroutine(LoadingRoutine());
+        SimulateClickByDefault();
+    }
+
+    private void SimulateClickByDefault()
+    {
+        Debug.Log("Awaken The Game...");
+        m_AwakeGameButton.onClick.AddListener(() => { Debug.Log("Called The Game..."); });
+        m_AwakeGameButton.onClick.Invoke();
     }
 
     private IEnumerator LoadingRoutine()
@@ -273,10 +283,10 @@ public class UIManager : MonoBehaviour
         if (GameExit_Button) GameExit_Button.onClick.AddListener(delegate { OpenPopup(QuitPopup_Object); });
 
         if (NoQuit_Button) NoQuit_Button.onClick.RemoveAllListeners();
-        if (NoQuit_Button) NoQuit_Button.onClick.AddListener(delegate { ClosePopup(QuitPopup_Object); });
+        if (NoQuit_Button) NoQuit_Button.onClick.AddListener(delegate { if (!isExit) { ClosePopup(QuitPopup_Object); } });
 
         if (CrossQuit_Button) CrossQuit_Button.onClick.RemoveAllListeners();
-        if (CrossQuit_Button) CrossQuit_Button.onClick.AddListener(delegate { ClosePopup(QuitPopup_Object); });
+        if (CrossQuit_Button) CrossQuit_Button.onClick.AddListener(delegate { if (!isExit) { ClosePopup(QuitPopup_Object); } });
 
         if (LBExit_Button) LBExit_Button.onClick.RemoveAllListeners();
         if (LBExit_Button) LBExit_Button.onClick.AddListener(delegate { ClosePopup(LBPopup_Object); });
@@ -322,18 +332,18 @@ public class UIManager : MonoBehaviour
 
     internal void DisconnectionPopup(bool isReconnection)
     {
-        if (isReconnection)
-        {
-            OpenPopup(ReconnectPopup_Object);
-        }
-        else
-        {
-            ClosePopup(ReconnectPopup_Object);
+        //if (isReconnection)
+        //{
+        //    OpenPopup(ReconnectPopup_Object);
+        //}
+        //else
+        //{
+        //    ClosePopup(ReconnectPopup_Object);
             if (!isExit)
             {
                 OpenPopup(DisconnectPopup_Object);
             }
-        }
+        //}
     }
 
     internal void PopulateWin(int value, double amount)
@@ -490,7 +500,6 @@ public class UIManager : MonoBehaviour
         isExit = true;
         audioController.PlayButtonAudio();
         slotManager.CallCloseSocket();
-        Application.ExternalCall("window.parent.postMessage", "onExit", "*");
     }
 
     private void OpenMenu()
