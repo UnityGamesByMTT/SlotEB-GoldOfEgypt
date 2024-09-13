@@ -59,10 +59,4 @@ public class PayoutCalculation : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
-
-
-    #region PayoutLine Functions
-
-    
-    #endregion
 }
