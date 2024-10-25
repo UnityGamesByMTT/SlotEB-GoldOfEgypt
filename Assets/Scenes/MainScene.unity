@@ -4938,7 +4938,7 @@ MonoBehaviour:
   uiManager: {fileID: 377874625}
   bonusdata: []
   _jsManager: {fileID: 500036493}
-  testToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDgzY2E2YTI3YmY5MDI0NDNlYjQ5NSIsInVzZXJuYW1lIjoiZWthbnNoIiwicm9sZSI6InBsYXllciIsImlhdCI6MTcyNTY4NTc4NiwiZXhwIjoxNzI2MjkwNTg2fQ.tnPbsOCmESq6lEPbEHN_zUkswAh0lE1tqHuXdsscfks
+  testToken: 
 --- !u!114 &500036493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5674,7 +5674,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 567733207}
   m_OnClick:
     m_PersistentCalls:
@@ -10244,7 +10244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.2076667}
   m_AnchorMax: {x: 0.5, y: 0.2076667}
-  m_AnchoredPosition: {x: 686, y: -31.929504}
+  m_AnchoredPosition: {x: 686, y: -31.929443}
   m_SizeDelta: {x: 234, y: 126.130005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1066475970
@@ -17590,7 +17590,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.2076667}
   m_AnchorMax: {x: 0.5, y: 0.2076667}
-  m_AnchoredPosition: {x: -686, y: -31.929504}
+  m_AnchoredPosition: {x: -686, y: -31.929443}
   m_SizeDelta: {x: 234, y: 126.130005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1719016847
