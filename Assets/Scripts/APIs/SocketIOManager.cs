@@ -37,13 +37,14 @@ public class SocketIOManager : MonoBehaviour
     internal JSHandler _jsManager;
 
     protected string SocketURI = null;
-    protected string TestSocketURI = "https://game-crm-rtp-backend.onrender.com/";
-    //protected string TestSocketURI = "https://7p68wzhv-5000.inc1.devtunnels.ms/";
+    //protected string TestSocketURI = "https://game-crm-rtp-backend.onrender.com/";
+    protected string TestSocketURI = "http://localhost:5000";
 
     [SerializeField]
     private string testToken;
 
     protected string gameID = "SL-GOE";
+   // protected string gameID = "";
 
     internal bool isLoaded = false;
 

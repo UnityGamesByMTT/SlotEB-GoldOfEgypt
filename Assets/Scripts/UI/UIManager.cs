@@ -119,9 +119,13 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Image Win_Image;
     [SerializeField]
+    private Image jackpot_Image;
+    [SerializeField]
     private GameObject WinPopup_Object;
     [SerializeField]
     private TMP_Text Win_Text;
+    [SerializeField] private Button MegaWinHideBtn;
+    private Tween TextTween, WinTween;
 
     [Header("FreeSpins Popup")]
     [SerializeField]
@@ -195,7 +199,7 @@ public class UIManager : MonoBehaviour
     private bool isSound = true;
     private bool isExit = false;
 
-    private int FreeSpins;
+    internal int FreeSpins;
     private int PageCounter = 0;
 
 
@@ -323,6 +327,8 @@ public class UIManager : MonoBehaviour
         if (Music_Button) Music_Button.onClick.RemoveAllListeners();
         if (Music_Button) Music_Button.onClick.AddListener(ToggleMusic);
 
+        if (MegaWinHideBtn) MegaWinHideBtn.onClick.RemoveAllListeners();
+        if (MegaWinHideBtn) MegaWinHideBtn.onClick.AddListener(OnClickMegaWinHide);
     }
 
     internal void LowBalPopup()
@@ -348,6 +354,9 @@ public class UIManager : MonoBehaviour
 
     internal void PopulateWin(int value, double amount)
     {
+        Win_Image.gameObject.SetActive(true);
+        jackpot_Image.gameObject.SetActive(false);
+
         switch (value)
         {
             case 1:
@@ -360,7 +369,9 @@ public class UIManager : MonoBehaviour
                 if (Win_Image) Win_Image.sprite = MegaWin_Sprite;
                 break;
             case 4:
-                if (Win_Image) Win_Image.sprite = Jackpot_Sprite;
+                // if (Win_Image) Win_Image.sprite = Jackpot_Sprite;
+                Win_Image.gameObject.SetActive(false);
+                jackpot_Image.gameObject.SetActive(true);
                 break;
         }
 
@@ -410,10 +421,15 @@ public class UIManager : MonoBehaviour
 
     internal void FreeSpinProcess(int spins)
     {
+        int ExtraSpins = spins - FreeSpins;
         FreeSpins = spins;
         if (FreeSpinPopup_Object) FreeSpinPopup_Object.SetActive(true);
-        if (Free_Text) Free_Text.text = spins.ToString() + " Free spins awarded.";
+        if (Free_Text) Free_Text.text = ExtraSpins.ToString() + " Free spins awarded.";
         if (MainPopup_Object) MainPopup_Object.SetActive(true);
+
+        DOVirtual.DelayedCall(2f, () => {
+            StartFreeSpins(spins);
+        });
     }
 
     private void StartPopupAnim(double amount)
@@ -422,16 +438,25 @@ public class UIManager : MonoBehaviour
         if (WinPopup_Object) WinPopup_Object.SetActive(true);
         if (MainPopup_Object) MainPopup_Object.SetActive(true);
 
-        DOTween.To(() => initAmount, (val) => initAmount = val, (int)amount, 5f).OnUpdate(() =>
+        TextTween =  DOTween.To(() => initAmount, (val) => initAmount = val, (int)amount, 5f).OnUpdate(() =>
         {
             if (Win_Text) Win_Text.text = initAmount.ToString();
         });
 
-        DOVirtual.DelayedCall(6f, () =>
+        WinTween = DOVirtual.DelayedCall(6f, () =>
         {
             ClosePopup(WinPopup_Object);
             slotManager.CheckPopups = false;
         });
+    }
+
+    private void OnClickMegaWinHide()
+    {
+        TextTween?.Kill();
+        WinTween?.Kill();
+
+        ClosePopup(WinPopup_Object);
+        slotManager.CheckPopups = false;
     }
 
     internal void ADfunction()
@@ -461,15 +486,15 @@ public class UIManager : MonoBehaviour
             string text = null;
             if (paylines.symbols[i].Multiplier[0][0] != 0)
             {
-                text += "5x - " + paylines.symbols[i].Multiplier[0][0];
+                text += "5x - " + paylines.symbols[i].Multiplier[0][0]+"x";
             }
             if (paylines.symbols[i].Multiplier[1][0] != 0)
             {
-                text += "\n4x - " + paylines.symbols[i].Multiplier[1][0];
+                text += "\n4x - " + paylines.symbols[i].Multiplier[1][0]+"x";
             }
             if (paylines.symbols[i].Multiplier[2][0] != 0)
             {
-                text += "\n3x - " + paylines.symbols[i].Multiplier[2][0];
+                text += "\n3x - " + paylines.symbols[i].Multiplier[2][0]+"x";
             }
             if (SymbolsText[i]) SymbolsText[i].text = text;
         }
