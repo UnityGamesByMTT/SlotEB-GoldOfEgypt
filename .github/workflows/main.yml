@@ -77,7 +77,7 @@ jobs:
 
       # Output: Artifact
       - name: Upload Build Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ vars.ARTIFACT_NAME }}
           path: ${{ vars.BUILD_PATH }}
