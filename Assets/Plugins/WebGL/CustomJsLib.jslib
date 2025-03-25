@@ -12,6 +12,7 @@ mergeInto(LibraryManager.library, {
       console.log('SendReactPostMessage, message sent: ' + message);
       if(window.ReactNativeWebView){
         if(message == "authToken"){
+          window.ReactNativeWebView.postMessage("if message is authtoken");
           var injectedObjectJson = window.ReactNativeWebView.injectedObjectJson();
           var injectedObj = JSON.parse(injectedObjectJson);
 

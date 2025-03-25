@@ -312,6 +312,7 @@ public class SocketIOManager : MonoBehaviour
                 }
             case "ExitUser":
                 {
+                    gameSocket.Disconnect();
                     if (this.manager != null)
                     {
                         Debug.Log("Dispose my Socket");
