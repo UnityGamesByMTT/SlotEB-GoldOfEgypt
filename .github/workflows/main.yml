@@ -2,8 +2,9 @@ name: Unity WebGL Automatic Build 👽✨🚀
 
 on:
   pull_request:
+    types: [closed]
     branches:    
-      - 'dev-build'
+      - 'develop'
   workflow_dispatch:
 
 permissions:
